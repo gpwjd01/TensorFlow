@@ -105,37 +105,3 @@ sns.regplot(x=Y_test, y=pred)   # 산포도
 plt.xlabel('Actual Values')
 plt.ylabel('Predicted Values')
 plt.show()
-
-#### DNN 학습 최적화 ####
-# 실습 1: Epoch 조절 - MY_EPOCH = 0
-# MSE 값 증가, 학습 시간 거의 0, 산포도: 추측값과 실제값의 상관관계가 거의 없음
-# MY_EPOCH = 2000 : 학습 시간 증가, MSE 값 차이 없음
-
-# 실습 2: Batch 조절 - MY_BATCH = 16
-# 학습 시간 증가, 손실 값 영향 없음
-# MY_BATCH = 354 : 학습 시간 증가, 손실값 차이 없음
-
-#### DNN 구조 최적화 ####
-# 실습 3: 은닉층 추가
-# 은닉층 3: model.add(Dense(500, activation='relu')
-# 은닉층 4: model.add(Dense(500, activation='relu')
-# 파라미터 수 증가, 손실값 감소, 산포도는 추측값과 실제값의 상관관계도 개선, 학습시간 증가
-
-#### Dataset 최적화 ####
-# 실습 4: Z-점수 정규화 생략 - Z_data = raw
-# 평균과 표준편차가 0과 1이 아님, MSE 결과는 NaN (계산 불가), 학습 시간 영향 없음
-
-# 실습 5: 학습용 데이터 수 조절 (학습 데이터 감소 시키기)
-# X_train = X_train.drop(X_train.index[177:])
-# Y_train = Y_train.drop(Y_train.index[177:])
-# MSE 증가, 학습 시간 감소
-
-# 실습 6: 데이터 요소 제거
-# raw = raw.drop('CRIM', axis=1)
-# heading.pop(0)
-# MSE 증가, 학습 시간 영향 미미
-
-# 실습 7: DNN 추측 대상 교체
-# X_data = Z_data.drop("AGE', axis=1)
-# Y_data = Z_data['AGE']
-# MSE 증가, 학습 시간 감소
